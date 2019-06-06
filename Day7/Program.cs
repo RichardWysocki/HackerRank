@@ -1,12 +1,5 @@
 ﻿using System;
-<<<<<<< HEAD
 using System.Linq;
-=======
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
->>>>>>> master
 
 namespace Day7
 {
@@ -14,7 +7,6 @@ namespace Day7
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
             int n = Convert.ToInt32(Console.ReadLine());
 
             int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp));
@@ -37,11 +29,11 @@ namespace Day7
             public string Reverse(int[] arr)
             {
                 string response = "";
-                
+
                 Array.Reverse(arr);
-                foreach (var intvalue in arr)
+                foreach (var VARIABLE in arr)
                 {
-                    response += intvalue.ToString() + ' ';
+                    response += VARIABLE.ToString() + ' ';
                 }
 
                 return response.Trim();
@@ -54,8 +46,4 @@ namespace Day7
     }
 
 
-=======
-        }
-    }
->>>>>>> master
 }
