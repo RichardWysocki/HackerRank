@@ -6,6 +6,12 @@ namespace Day6
 {
     class Program
     {
+        public Program()
+        {
+        
+
+        }
+
         static void Main(string[] args)
         {
             List<string> wordList = new List<string>();
@@ -25,7 +31,7 @@ namespace Day6
             Console.ReadLine();
         }
 
-        public class Day6Conversion
+        public class Day6Conversion : IDay6Conversion
         {
             public Day6Conversion()
             {

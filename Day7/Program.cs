@@ -1,5 +1,12 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.Linq;
+=======
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+>>>>>>> master
 
 namespace Day7
 {
@@ -7,6 +14,7 @@ namespace Day7
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             int n = Convert.ToInt32(Console.ReadLine());
 
             int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp));
@@ -46,4 +54,8 @@ namespace Day7
     }
 
 
+=======
+        }
+    }
+>>>>>>> master
 }
