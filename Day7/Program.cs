@@ -31,9 +31,9 @@ namespace Day7
                 string response = "";
                 
                 Array.Reverse(arr);
-                foreach (var VARIABLE in arr)
+                foreach (var intvalue in arr)
                 {
-                    response += VARIABLE.ToString() + ' ';
+                    response += intvalue.ToString() + ' ';
                 }
 
                 return response.Trim();
