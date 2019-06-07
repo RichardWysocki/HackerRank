@@ -31,12 +31,10 @@ namespace Day7
                 string response = "";
 
                 Array.Reverse(arr);
-                foreach (var VARIABLE in arr)
-                {
-                    response += VARIABLE.ToString() + ' ';
-                }
 
-                return response.Trim();
+                response = String.Join(" ", arr.Select(c => c).ToArray());
+
+                return response; // response.Trim();
             }
 
 
