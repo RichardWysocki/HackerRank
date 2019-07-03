@@ -35,14 +35,9 @@ namespace InterviewHackerrank
         {
             var words = s.Split(' ');
 
-            var evenwords = words.Where(x => x.Length % 2 == 0).OrderByDescending(x => x.Length).ToList();
+            var evenWords = words.Where(x => x.Length % 2 == 0).OrderByDescending(x => x.Length).ToList();
 
-            if (evenwords.Count > 0)
-                return evenwords.First().ToString();
-            else
-            {
-                return "00";
-            }
+            return evenWords.Count > 0 ? evenWords.First() : "00";
 
 
         }
