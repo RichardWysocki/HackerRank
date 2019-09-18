@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POC", "POC\POC.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewHackerrank", "InterviewHackerrank\InterviewHackerrank.csproj", "{9E818672-10E7-493E-A21A-05F179CA935F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Finance_Project", "Finance_Project\Finance_Project.csproj", "{1723D4F6-508B-441B-A0D3-FF3061F1AC28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{89B4E8F2-8C95-4466-A34E-3FA1306B8FD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{9E818672-10E7-493E-A21A-05F179CA935F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E818672-10E7-493E-A21A-05F179CA935F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E818672-10E7-493E-A21A-05F179CA935F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1723D4F6-508B-441B-A0D3-FF3061F1AC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1723D4F6-508B-441B-A0D3-FF3061F1AC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1723D4F6-508B-441B-A0D3-FF3061F1AC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1723D4F6-508B-441B-A0D3-FF3061F1AC28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89B4E8F2-8C95-4466-A34E-3FA1306B8FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89B4E8F2-8C95-4466-A34E-3FA1306B8FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89B4E8F2-8C95-4466-A34E-3FA1306B8FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89B4E8F2-8C95-4466-A34E-3FA1306B8FD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

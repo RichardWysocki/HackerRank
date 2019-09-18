@@ -9,6 +9,8 @@ namespace InterviewHackerrank
         [Test]
         [TestCase("mokkori", 7)]
         [TestCase("aabaa", 5)]
+        [TestCase("abaab", 5)]
+
         public void TestPalindrome(string s, int expectedResult)
         {
             //Arrange
@@ -56,7 +58,7 @@ namespace InterviewHackerrank
             for (int i = 0; i < s.Length; i++) //i is starting position
             {
                 uniqueSet.Add(s.Substring(i, 1));
-                for (int j = 2; j + i < s.Length; j++) //j is number of characters to get
+                for (int j = 2; j + i < s.Length+1; j++) //j is number of characters to get
                 {
                     uniqueSet.Add(s.Substring(i, j));
                 }
