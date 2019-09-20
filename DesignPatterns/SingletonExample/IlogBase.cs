@@ -1,4 +1,4 @@
-﻿namespace DesignPatterns
+﻿namespace DesignPatterns.SingletonExample
 {
     public interface ILogBase
     {

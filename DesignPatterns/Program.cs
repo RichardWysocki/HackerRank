@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+using DesignPatterns.SingletonExample;
+
 namespace DesignPatterns
 {
     class Program

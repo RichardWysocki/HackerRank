@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DesignPatterns
+namespace DesignPatterns.SingletonExample
 {
     public class RunLoggers
     {

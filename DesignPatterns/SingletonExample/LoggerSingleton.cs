@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace DesignPatterns
+namespace DesignPatterns.SingletonExample
 {
     public sealed class Singleton: ILogBase
     {
