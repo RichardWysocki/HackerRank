@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace DesignPatterns
@@ -11,104 +8,76 @@ namespace DesignPatterns
     {
         public RunLoggers()
         {
-            
-            
+
         }
 
-        public async Task RunLoggerSingletonParallel()
+        public async Task RunLoggerSingletonParallel(ILogBase log)
         {
             Console.WriteLine("Starting.... RunLoggerSingletonParallel");
 
-            var logger = new LoggerSingleton(@"log.txt");
-            logger.Init();
-
-
-            var TaskList = new List<Task<bool>>()
-            {
-                Task.Run(() => new EmailManager(logger).SendEmail("1 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("2 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("3 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("4 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("5 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("6 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("7 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("8 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("9 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("10 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("11 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("12 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("13 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("14 - RichardWysocki@gmail.com" )),
-                Task.Run(() => new EmailManager(logger).SendEmail("15 - RichardWysocki@gmail.com" ))
-            };
-
-            //var task1 = new Task(); GetAsync(1);
-            //var task2 = GetAsync(2)
-            await Task.WhenAll(TaskList.ToArray()).ConfigureAwait(false);
-            var result1 = TaskList[0]; // results[0];
-            var result2 = TaskList[1].Result; //TaskListresults[1];
+            var taskList = TaskList(log);
+            await Task.WhenAll(taskList.ToArray()).ConfigureAwait(false);
+            var result1 = taskList[0]; 
+            var result2 = taskList[1].Result; 
 
             Console.WriteLine("Stopping.... RunLoggerSingletonParallel");
         }
 
-        public async Task RunLoggerNonSingletonParallel()
+        public async Task RunLoggerNonSingletonParallel(ILogBase log)
         {
             Console.WriteLine("Starting.... RunLoggerNonSingletonParallel");
-
-            var logger = new LoggerSingleton(@"log.txt");
-            logger.Init();
-
+            
             try
             {
-                var TaskList = new List<Task<bool>>()
-                {
-                    Task.Run(() => new EmailManager(logger).SendEmail("1 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("2 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("3 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("4 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("5 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("6 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("7 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("8 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("9 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("10 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("11 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("12 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("13 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("14 - RichardWysocki@gmail.com" )),
-                    Task.Run(() => new EmailManager(logger).SendEmail("15 - RichardWysocki@gmail.com" ))
-                };
+                var taskList = TaskList(log);
 
-                //var task1 = new Task(); GetAsync(1);
-                //var task2 = GetAsync(2)
 
-                await Task.WhenAll(TaskList.ToArray()).ConfigureAwait(false);
-                var result1 = TaskList[0]; // results[0];
-                var result2 = TaskList[1].Result; //TaskListresults[1];
+                await Task.WhenAll(taskList.ToArray()).ConfigureAwait(false);
+                var result1 = taskList[0]; // results[0];
+                var result2 = taskList[1].Result; //TaskListresults[1];
             }
             catch (Exception e)
             {
-                //logger.Terminate();
                 Console.WriteLine(e);
-                // throw;
             }
 
             Console.WriteLine("Stopping.... RunLoggerNonSingletonParallel");
         }
 
-        public void RunLoggerNonAsync()
+
+        public void RunLoggerNonAsync(ILogBase log)
         {
             Console.WriteLine("Starting.... RunLoggerNonSingular");
 
-            var logger = new Logger(@"log.txt");
-            var emailManager = new EmailManager(logger);
+            var emailManager = new EmailManager(log);
             for (int i = 0; i < 15; i++)
             {
-                var result = emailManager.SendEmail($"{i} - RichardWysocki@gmail.com").Result;
+                var result = emailManager.SendEmail($"{i+1} - RichardWysocki@gmail.com").Result;
             }
             Console.WriteLine("Stopping.... RunLoggerNonSingular");
         }
 
-
+        private List<Task<bool>> TaskList(ILogBase log)
+        {
+            var taskList = new List<Task<bool>>()
+            {
+                Task.Run(() => new EmailManager(log).SendEmail("1 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("2 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("3 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("4 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("5 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("6 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("7 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("8 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("9 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("10 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("11 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("12 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("13 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("14 - RichardWysocki@gmail.com")),
+                Task.Run(() => new EmailManager(log).SendEmail("15 - RichardWysocki@gmail.com"))
+            };
+            return taskList;
+        }
     }
 }

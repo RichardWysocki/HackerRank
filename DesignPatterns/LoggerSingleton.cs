@@ -1,81 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace DesignPatterns
 {
-    //public class LoggerSingle : ILogBase
-    //{
-    //    public void Log(string message)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-
-
-
-    //}
-
-    public sealed class Singleton
+    public sealed class Singleton: ILogBase
     {
-        private static Singleton instance = null;
-        private static readonly object padlock = new object();
+        private static Singleton _instance = null;
+        private static readonly object Padlock = new object();
+        private readonly string _mFileName;
+        private StreamWriter _mLogFile;
 
         Singleton()
         {
+            _mFileName = "SingletonFile.txt";
+            Init();
+        }
+        private void Init()
+        {
+            _mLogFile = new StreamWriter(_mFileName, true);
+            _mLogFile.AutoFlush = true;
         }
 
         public static Singleton Instance
         {
             get
             {
-                lock (padlock)
+                lock (Padlock)
                 {
-                    if (instance == null)
+                    if (_instance == null)
                     {
-                        instance = new Singleton();
+                        _instance = new Singleton();
                     }
-                    return instance;
+                    return _instance;
                 }
             }
-        }
-    }
-
-    class LoggerSingleton : ILogBase
-    {
-        private string mFileName;
-        private StreamWriter mLogFile;
-        public string FileName
-        {
-            get
-            {
-                return mFileName;
-            }
-        }
-        public LoggerSingleton(string fileName)
-        {
-            mFileName = fileName;
-        }
-        public void Init()
-        {
-            mLogFile = new StreamWriter(mFileName, true);
-        }
-        public void Terminate()
-        {
-            mLogFile.Close();
-        }
-        public void ProcessLogMessage(string logMessage)
-        {
-            // FileLogger implements the ProcessLogMessage method by
-            // writing the incoming message to a file.
-            mLogFile.WriteLine(logMessage);
         }
 
         public void Log(string message)
         {
-            mLogFile.WriteLine(message);
-            mLogFile.Flush();
+            _mLogFile.WriteLine(message);
+        }
+    }
+
+    public class LoggerSingleton : ILogBase
+    {
+        private readonly string _mFileName;
+        private StreamWriter _mLogFile;
+
+
+        public LoggerSingleton(string fileName)
+        {
+            _mFileName = fileName;
+            Init();
+        }
+        private void Init()
+        {
+            _mLogFile = new StreamWriter(_mFileName, true);
+            _mLogFile.AutoFlush = true;
+        }
+        public void Terminate()
+        {
+            _mLogFile.Close();
+        }
+
+        public void Log(string message)
+        {
+            _mLogFile.WriteLine(message);
         }
     }
 }

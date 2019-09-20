@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace DesignPatterns
 {
@@ -20,6 +17,7 @@ namespace DesignPatterns
         {
             using (StreamWriter streamWriter = new StreamWriter(_logFile, true))
             {
+                streamWriter.AutoFlush = true;
                 streamWriter.WriteLine(message);
                 streamWriter.Close();
             }
