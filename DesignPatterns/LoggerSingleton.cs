@@ -6,18 +6,12 @@ namespace DesignPatterns
     {
         private static Singleton _instance = null;
         private static readonly object Padlock = new object();
-        private readonly string _mFileName;
-        private StreamWriter _mLogFile;
+        private readonly StreamWriter _mLogFile;
 
         Singleton()
         {
-            _mFileName = "SingletonFile.txt";
-            Init();
-        }
-        private void Init()
-        {
-            _mLogFile = new StreamWriter(_mFileName, true);
-            _mLogFile.AutoFlush = true;
+            var mFileName = "SingletonFile.txt";
+            _mLogFile = new StreamWriter(mFileName, true) { AutoFlush = true };
         }
 
         public static Singleton Instance
@@ -41,30 +35,22 @@ namespace DesignPatterns
         }
     }
 
-    //public class LoggerSingleton : ILogBase
-    //{
-    //    private readonly string _mFileName;
-    //    private StreamWriter _mLogFile;
+    public class LoggerSingleton : ILogBase
+    {
+        private readonly string _mFileName;
+        private StreamWriter _mLogFile;
 
 
-    //    public LoggerSingleton(string fileName)
-    //    {
-    //        _mFileName = fileName;
-    //        Init();
-    //    }
-    //    private void Init()
-    //    {
-    //        _mLogFile = new StreamWriter(_mFileName, true);
-    //        _mLogFile.AutoFlush = true;
-    //    }
-    //    public void Terminate()
-    //    {
-    //        _mLogFile.Close();
-    //    }
+        public LoggerSingleton(string fileName)
+        {
+            _mFileName = fileName;
 
-    //    public void Log(string message)
-    //    {
-    //        _mLogFile.WriteLine(message);
-    //    }
-    //}
+        }
+
+
+        public void Log(string message)
+        {
+            _mLogFile.WriteLine(message);
+        }
+    }
 }
