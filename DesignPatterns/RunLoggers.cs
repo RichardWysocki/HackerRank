@@ -6,11 +6,6 @@ namespace DesignPatterns
 {
     public class RunLoggers
     {
-        public RunLoggers()
-        {
-
-        }
-
         public async Task RunLoggerSingletonParallel(ILogBase log)
         {
             Console.WriteLine("Starting.... RunLoggerSingletonParallel");
@@ -33,14 +28,13 @@ namespace DesignPatterns
 
 
                 await Task.WhenAll(taskList.ToArray()).ConfigureAwait(false);
-                var result1 = taskList[0]; // results[0];
-                var result2 = taskList[1].Result; //TaskListresults[1];
+                var result1 = taskList[0]; 
+                var result2 = taskList[1].Result; 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-
             Console.WriteLine("Stopping.... RunLoggerNonSingletonParallel");
         }
 
@@ -54,6 +48,7 @@ namespace DesignPatterns
             {
                 var result = emailManager.SendEmail($"{i+1} - RichardWysocki@gmail.com").Result;
             }
+
             Console.WriteLine("Stopping.... RunLoggerNonSingular");
         }
 

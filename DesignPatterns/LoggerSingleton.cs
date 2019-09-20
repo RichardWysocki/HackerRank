@@ -41,30 +41,30 @@ namespace DesignPatterns
         }
     }
 
-    public class LoggerSingleton : ILogBase
-    {
-        private readonly string _mFileName;
-        private StreamWriter _mLogFile;
+    //public class LoggerSingleton : ILogBase
+    //{
+    //    private readonly string _mFileName;
+    //    private StreamWriter _mLogFile;
 
 
-        public LoggerSingleton(string fileName)
-        {
-            _mFileName = fileName;
-            Init();
-        }
-        private void Init()
-        {
-            _mLogFile = new StreamWriter(_mFileName, true);
-            _mLogFile.AutoFlush = true;
-        }
-        public void Terminate()
-        {
-            _mLogFile.Close();
-        }
+    //    public LoggerSingleton(string fileName)
+    //    {
+    //        _mFileName = fileName;
+    //        Init();
+    //    }
+    //    private void Init()
+    //    {
+    //        _mLogFile = new StreamWriter(_mFileName, true);
+    //        _mLogFile.AutoFlush = true;
+    //    }
+    //    public void Terminate()
+    //    {
+    //        _mLogFile.Close();
+    //    }
 
-        public void Log(string message)
-        {
-            _mLogFile.WriteLine(message);
-        }
-    }
+    //    public void Log(string message)
+    //    {
+    //        _mLogFile.WriteLine(message);
+    //    }
+    //}
 }
