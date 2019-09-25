@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
+using DesignPatterns.ChainOfResponsibly;
 using DesignPatterns.SingletonExample;
 
 namespace DesignPatterns
@@ -10,9 +10,18 @@ namespace DesignPatterns
     {
         static async Task Main(string[] args)
         {
+            Console.WriteLine("Start Program");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+
+            Console.WriteLine("Chain of Responsibility");
+            var chainofResponsilbity = new RunChainofResponsiblity();
+            chainofResponsilbity.Run();
+
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+
             var runLoggers = new RunLoggers();
             var stopwatch = new Stopwatch();
-
+            Console.WriteLine("Singleton");
             stopwatch.Start();
             runLoggers.RunLoggerNonAsync(new Logger(@"log.txt"));
             stopwatch.Stop();
