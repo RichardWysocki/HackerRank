@@ -1,14 +1,14 @@
-﻿namespace DesignPatterns.ChainOfResponsibly
+﻿namespace DesignPatterns.ChainOfResponsibility
 {
     class NewHireRequest: IChain
     {
         private IChain _nextChain;
 
-        public Category Process(string name)
+        public CategoryResponse Process(string name)
         {
             if (name == "NewHireRequest")
             {
-                return new Category { Name = "New Hire" };
+                return new CategoryResponse { Name = "New Hire" };
             }
 
             return _nextChain.Process(name);

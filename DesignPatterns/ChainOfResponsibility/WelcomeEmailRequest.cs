@@ -1,14 +1,14 @@
-﻿namespace DesignPatterns.ChainOfResponsibly
+﻿namespace DesignPatterns.ChainOfResponsibility
 {
     class WelcomeEmailRequest: IChain
     {
         private IChain _nextChain;
 
-        public Category Process(string name)
+        public CategoryResponse Process(string name)
         {
             if (name == "WelcomeEmailRequest")
             {
-                return new Category { Name = "Welcome Email" };
+                return new CategoryResponse { Name = "Welcome Email" };
             }
 
             return _nextChain.Process(name);

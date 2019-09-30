@@ -1,15 +1,15 @@
-﻿namespace DesignPatterns.ChainOfResponsibly
+﻿namespace DesignPatterns.ChainOfResponsibility
 {
     class TrakItRequest: IChain
     {
         private IChain _nextChain = EndofChain.Instance;
 
 
-        public Category Process(string name)
+        public CategoryResponse Process(string name)
         {
             if (name == "TrakItRequest")
             { 
-                return new Category { Name= "TrakIT"};
+                return new CategoryResponse { Name= "TrakIT"};
             }
 
             return _nextChain.Process(name);

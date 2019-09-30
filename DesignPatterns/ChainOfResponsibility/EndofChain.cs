@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace DesignPatterns.ChainOfResponsibly
+namespace DesignPatterns.ChainOfResponsibility
 {
     class EndofChain: IChain
     {
         
-        private static EndofChain _instance = new EndofChain();
+        private static readonly EndofChain _instance = new EndofChain();
 
         public static EndofChain Instance
         {
@@ -13,9 +13,9 @@ namespace DesignPatterns.ChainOfResponsibly
 
         }
 
-        public Category Process(string name)
+        public CategoryResponse Process(string name)
         {
-            return new Category {Name = "You are Done the process"};
+            return new CategoryResponse {Name = "You are Done the process"};
         }
 
         public void Next(IChain nextInChain)
