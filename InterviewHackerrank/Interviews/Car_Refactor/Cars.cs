@@ -4,30 +4,26 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using InterviewHackerrank.Interviews.Car_Refactor;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace InterviewHackerrank.Car_Refactor
+namespace InterviewHackerrank.Interviews.Car_Refactor
 {
 
-    class Rich_TestMovieTitles
+    class Rich_TestCarModels
     {
 
         [Test]
-        public void TestMovies()
+        public void TestCars()
         {
             //Arrange
-            var movies =
-                new Cars("https://marketcheck-prod.apigee.net/v1/search?api_key=GPSyUoNIdLcxhQt1MPGA8ALNC2EVY9yX&year=2019&start=0&rows=50");
+            var cars = new Cars("https://marketcheck-prod.apigee.net/v1/search?api_key=GPSyUoNIdLcxhQt1MPGA8ALNC2EVY9yX&year=2019&start=0&rows=50");
 
             //Act
-            var response = movies.getCars("Ford");
+            var response = cars.GetCars("Ford");
 
             //Assert
-            Assert.That(response.Length == 13, response.Count().ToString);
+            Assert.That(response.Length == 50, response.Count().ToString);
 
 
         }
@@ -35,7 +31,7 @@ namespace InterviewHackerrank.Car_Refactor
         public class Cars
         {
             private readonly string _url;
-                
+
 
             public Cars(string url)
             {
@@ -45,32 +41,42 @@ namespace InterviewHackerrank.Car_Refactor
 
             }
 
-            public void LoadJson()
+            public RootObject LoadJson()
             {
                 Console.WriteLine(Directory.GetCurrentDirectory());
 
                 var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamReader r = new StreamReader(dir+ @"\Car_Refactor\Cars.json"))
+                using (StreamReader r = new StreamReader(dir + @"\Interviews\Car_Refactor\Cars.json"))
                 {
                     string json = r.ReadToEnd();
-                    var items = JsonConvert.DeserializeObject<RootObject>(json);
+                    return JsonConvert.DeserializeObject<RootObject>(json);
                 }
-
             }
 
-            public string[] getCars(string seachTitle)
+            public string[] GetCars(string searchTitle)
             {
                 var titles = new List<string>();
                 var httpData = new HttpClient();
                 var knt = 1;
-                var jsonTask = CarData(seachTitle, httpData, titles, knt);
+                var cars = LoadJson().listings;
+
+                var uniqueList = new List<string>();
+                foreach (var VARIABLE in cars)
+                {
+                    if (!uniqueList.Contains(VARIABLE.build.model))
+                    {
+                        uniqueList.Add(VARIABLE.build.model);
+                    }
+                }
+
+                return uniqueList.ToArray();
                 //var kntpages = jsonTask.total_pages;
                 //while (knt < kntpages)
                 //{
                 //    knt++;
                 //    MovieData(seachTitle, httpData, titles, knt);
                 //}
-                return titles.OrderBy(x => x).ToArray();
+                return cars.Select(x => x.build.model).OrderBy(x => x).ToArray();
 
             }
 
