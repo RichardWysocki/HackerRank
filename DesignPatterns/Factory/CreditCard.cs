@@ -6,7 +6,7 @@
 
         public CreditCard()
         {
-            _amount = 400.00;
+            _amount = 1000.00;
 
         }
         public double Deposit(string account, double amount)

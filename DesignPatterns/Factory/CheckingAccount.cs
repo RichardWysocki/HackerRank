@@ -6,7 +6,7 @@
 
         public CheckingAccount()
         {
-            _amount = 500.00;
+            _amount = 12450.25;
         }
         public double Deposit(string account,double amount)
         {

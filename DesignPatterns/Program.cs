@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DesignPatterns.ChainOfResponsibility;
 using DesignPatterns.Factory;
+using DesignPatterns.SingletonExample;
 
 namespace DesignPatterns
 {
@@ -11,58 +15,67 @@ namespace DesignPatterns
         {
             Console.WriteLine("Start Program");
             Console.WriteLine("--------------------------------------------------------------------------------------------------");
-
-            //Console.WriteLine("Chain of Responsibility");
-            //var chainofResponsilbity = new RunChainofResponsiblity();
-            //chainofResponsilbity.Run();
-
-            //Console.WriteLine("--------------------------------------------------------------------------------------------------");
-
-            //var runLoggers = new RunLoggers();
-            //var stopwatch = new Stopwatch();
-            //Console.WriteLine("Singleton");
-            //stopwatch.Start();
-            //runLoggers.RunLoggerNonAsync(new Logger(@"log.txt"));
-            //stopwatch.Stop();
-            //Console.WriteLine($"TimeElapsed = {stopwatch.Elapsed}");
-            //Console.WriteLine("--------------------------------------------------------------------------------------------------");
-
-            //stopwatch.Restart();
-            ////await runLoggers.RunLoggerSingletonParallel(new LoggerSingleton(@"log_Singleton.txt"));
-            //await runLoggers.RunLoggerSingletonParallel(Singleton.Instance);
-            //stopwatch.Stop();
-            //Console.WriteLine($"TimeElapsed = {stopwatch.Elapsed}");
-            //Console.WriteLine("--------------------------------------------------------------------------------------------------");
-
-
-            //stopwatch.Restart();
-            //try
-            //{
-            //    await runLoggers.RunLoggerNonSingletonParallel(new Logger(@"NotSingleton_log.txt"));
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
-            //stopwatch.Stop();
-            //Console.WriteLine($"TimeElapsed = {stopwatch.Elapsed}");
-            //Console.WriteLine("--------------------------------------------------------------------------------------------------");
-
-
+            Console.WriteLine("CHAIN OF RESPONSIBILITY---------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            var chainofResponsilbity = new RunChainofResponsiblity();
+            chainofResponsilbity.Run();
 
             Console.WriteLine("--------------------------------------------------------------------------------------------------");
-             var factory = new CreateFactory();
+            Console.WriteLine("SINGLETON NOT ASYNC-------------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            var runLoggers = new RunLoggers();
+            var stopwatch = new Stopwatch();
+            Console.WriteLine("Singleton");
+            stopwatch.Start();
+            runLoggers.RunLoggerNonAsync(new Logger(@"log.txt"));
+            stopwatch.Stop();
+            Console.WriteLine($"TimeElapsed = {stopwatch.Elapsed}");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            Console.WriteLine("SINGLETON IN PARALLEL-----------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            stopwatch.Restart();
+            //await runLoggers.RunLoggerSingletonParallel(new LoggerSingleton(@"log_Singleton.txt"));
+            await runLoggers.RunLoggerSingletonParallel(Singleton.Instance);
+            stopwatch.Stop();
+            Console.WriteLine($"TimeElapsed = {stopwatch.Elapsed}");
 
-            Console.WriteLine("Enter in Account TransactionType(CreditCard, CheckingAccount) Amount: ");
-            var response = Console.ReadLine();
-            var fieldsArray = response.Split(' ').ToArray();
-            var account = fieldsArray[0];
-            var type = fieldsArray[1];
-            var amount = double.Parse(fieldsArray[2]);
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            Console.WriteLine("NOT SINGLETONIN PARALLEL--------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            stopwatch.Restart();
+            try
+            {
+                await runLoggers.RunLoggerNonSingletonParallel(new Logger(@"NotSingleton_log.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            stopwatch.Stop();
+            Console.WriteLine($"TimeElapsed = {stopwatch.Elapsed}");
 
-            var test = factory.LoadFactory(type);
-            var balance = test.CheckBalance(account);
-            Console.WriteLine(balance);
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            Console.WriteLine("FACTORY PATTERN-----------------------------------------------------------------------------------"); 
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+
+            var transactionTypes = new List<string> { "CreditCard", "CheckingAccount" };
+             
+            foreach (var type in transactionTypes)
+            {
+                var defaultbalanceShouldbe = type == "CreditCard" ? 1000 : 12450.25;
+                Console.WriteLine($"Starting Factory {type} wih default balance of {defaultbalanceShouldbe}");
+                var factory = new CreateFactory();
+                var transactionFactory = factory.LoadFactory(type);
+                Console.WriteLine("CheckBalance: " + transactionFactory.CheckBalance("12345"));
+                Console.WriteLine("Deposit of $75.50: " + transactionFactory.Deposit("12345", 75.50));
+                Console.WriteLine("CheckBalance: " + transactionFactory.CheckBalance("12345"));
+                Console.WriteLine("WithDraw of $50.25: " + transactionFactory.WithDraw("12345", 50.25));
+                Console.WriteLine("CheckBalance: " + transactionFactory.CheckBalance("12345"));
+                Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            }
+            
+            
+            
             Console.WriteLine("--------------------------------------------------------------------------------------------------");
 
             Console.WriteLine("End Program");
