@@ -17,28 +17,34 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
         public void TestCars()
         {
             //Arrange
-            var cars = new Cars("https://marketcheck-prod.apigee.net/v1/search?api_key=GPSyUoNIdLcxhQt1MPGA8ALNC2EVY9yX&year=2019&start=0&rows=50");
+            var cars = new Cars("Cars");
 
             //Act
-            var response = cars.GetCars("Ford");
+            var response = cars.GetCars();
 
+            foreach (var VARIABLE in response.Values)
+            {
+                Console.WriteLine(VARIABLE);
+                foreach (var car in VARIABLE)
+                {
+                    Console.WriteLine("   "+ car);
+                }
+                
+            }
             //Assert
-            Assert.That(response.Length == 50, response.Count().ToString);
+            Assert.That(response.Count == 50, response.Count().ToString);
 
 
         }
 
         public class Cars
         {
-            private readonly string _url;
+            private readonly string _fileName;
 
-
-            public Cars(string url)
+            public Cars(string fileName)
             {
-                _url = url;
+                _fileName = fileName;
                 LoadJson();
-
-
             }
 
             public RootObject LoadJson()
@@ -46,52 +52,58 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
                 Console.WriteLine(Directory.GetCurrentDirectory());
 
                 var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamReader r = new StreamReader(dir + @"\Interviews\Car_Refactor\Cars.json"))
+                using (StreamReader r = new StreamReader(dir + @"\Interviews\Car_Refactor\"+ _fileName + ".json"))
                 {
                     string json = r.ReadToEnd();
                     return JsonConvert.DeserializeObject<RootObject>(json);
                 }
             }
 
-            public string[] GetCars(string searchTitle)
+            //public string[] GetCars(string searchTitle)
+            public Dictionary<string, List<string>> GetCars()
             {
                 var titles = new List<string>();
                 var httpData = new HttpClient();
                 var knt = 1;
                 var cars = LoadJson().listings;
 
-                var uniqueList = new List<string>();
+                var uniqueCarList = new List<string>();
                 foreach (var VARIABLE in cars)
                 {
-                    if (!uniqueList.Contains(VARIABLE.build.model))
+                    if (!uniqueCarList.Contains(VARIABLE.build.model))
                     {
-                        uniqueList.Add(VARIABLE.build.model);
+                        uniqueCarList.Add(VARIABLE.build.model);
+                    }
+                }
+                var collection = new Dictionary<string, List<string>>();
+                foreach (var VARIABLE in uniqueCarList)
+                {
+                    if (collection.ContainsKey(VARIABLE.Substring(0, 1)))
+                    {
+                        var value = collection[VARIABLE.Substring(0, 1)];
+                        value.Add(VARIABLE);
+                        collection[VARIABLE.Substring(0, 1)] = value;
+                    }
+                    else
+                    {
+                        collection.Add(VARIABLE.Substring(0, 1), new List<string>(){VARIABLE});
                     }
                 }
 
-                return uniqueList.ToArray();
+                //var collectionList = collection.OrderBy(x => x.Key).ToList();
+                // return titlesSorted.ToArray();
+                return collection; 
+                //return uniqueCarList .ToArray();
                 //var kntpages = jsonTask.total_pages;
                 //while (knt < kntpages)
                 //{
                 //    knt++;
                 //    MovieData(seachTitle, httpData, titles, knt);
                 //}
-                return cars.Select(x => x.build.model).OrderBy(x => x).ToArray();
+                //return cars.Select(x => x.build.model).OrderBy(x => x).ToArray();
 
             }
 
-            private RootObject CarData(string seachTitle, HttpClient httpData, List<string> titles, int pageNumber)
-            {
-                var response = httpData.GetAsync(_url).Result;
-                var jsonString = response.Content.ReadAsStringAsync().Result;
-                var jsonTask = JsonConvert.DeserializeObject<RootObject>(jsonString);
-                foreach (var movelist in jsonTask.listings)
-                {
-                    titles.Add(movelist.build.model);
-                }
-
-                return jsonTask;
-            }
 
 
         }

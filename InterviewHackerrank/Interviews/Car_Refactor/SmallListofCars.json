@@ -1,0 +1,184 @@
+{
+  "num_found": 6110109,
+  "listings": [
+    {
+      "build": {
+        "year": 2016,
+        "make": "Ford",
+        "model": "F-250 Super Duty",
+        "trim": "King Ranch",
+        "body_type": "Pickup",
+        "body_subtype": "Crew Cab",
+        "vehicle_type": "Truck",
+        "transmission": "Automatic",
+        "drivetrain": "4WD",
+        "fuel_type": "Diesel",
+        "engine": "6.7L V8 OHV 16V DIESEL",
+        "engine_size": 6.7,
+        "engine_block": "V",
+        "doors": 4,
+        "cylinders": 8,
+        "made_in": "United States",
+        "steering_type": "Recirc",
+        "antibrake_sys": "4-Wheel ABS",
+        "tank_size": "35 gallon",
+        "overall_height": "76.60 inches",
+        "overall_length": "227.60 inches",
+        "overall_width": "79.90 inches",
+        "std_seating": "3",
+        "highway_miles": "18 miles/gallon",
+        "city_miles": "14 miles/gallon",
+        "trim_r": "XLT"
+      }
+    },
+    {
+      "build": {
+        "year": 2018,
+        "make": "Nissan",
+        "model": "Audi",
+        "trim": "2.5 S",
+        "body_type": "Sedan",
+        "vehicle_type": "Car",
+        "drivetrain": "4x2",
+        "fuel_type": "Gasoline",
+        "engine_size": 2.5,
+        "doors": 4,
+        "cylinders": 4,
+        "made_in": "United States ",
+        "trim_r": "2.5 SV"
+      }
+    },
+    {
+      "build": {
+        "year": 2018,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "2.5 S",
+        "body_type": "Sedan",
+        "vehicle_type": "Car",
+        "drivetrain": "4x2",
+        "fuel_type": "Gasoline",
+        "engine_size": 2.5,
+        "doors": 4,
+        "cylinders": 4,
+        "made_in": "United States ",
+        "trim_r": "2.5 SV"
+      }
+    },
+    {
+      "build": {
+        "year": 2018,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "2.5 S",
+        "body_type": "Sedan",
+        "vehicle_type": "Car",
+        "drivetrain": "4x2",
+        "fuel_type": "Gasoline",
+        "engine_size": 2.5,
+        "doors": 4,
+        "cylinders": 4,
+        "made_in": "United States ",
+        "trim_r": "2.5 SV"
+      }
+    },
+    {
+      "build": {
+        "year": 2004,
+        "make": "Chevrolet",
+        "model": "Tracker",
+        "trim": "ZR2",
+        "body_type": "SUV",
+        "vehicle_type": "SUV",
+        "transmission": "Automatic",
+        "drivetrain": "4WD",
+        "fuel_type": "Regular Unleaded",
+        "engine": "2.5L V6 DOHC 24V",
+        "engine_size": 2.5,
+        "engine_block": "V",
+        "doors": 4,
+        "cylinders": 6,
+        "made_in": "Canada",
+        "steering_type": "R&P",
+        "antibrake_sys": "Non-Abs   4-Wheel ABS",
+        "tank_size": "16 gallon",
+        "overall_height": "66.30 Inches",
+        "overall_length": "162.80 Inches",
+        "overall_width": "67.30 Inches",
+        "std_seating": "5",
+        "highway_miles": "22 miles/gallon",
+        "city_miles": "19 miles/gallon",
+        "trim_r": "ZR2"
+      }
+    },
+    {
+      "build": {
+        "year": 2013,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "SE",
+        "body_type": "SUV",
+        "vehicle_type": "SUV",
+        "transmission": "Automatic",
+        "drivetrain": "FWD",
+        "fuel_type": "Premium Unleaded",
+        "engine": "1.6L L4 DOHC 16V",
+        "engine_size": 1.6,
+        "engine_block": "I",
+        "doors": 4,
+        "cylinders": 4,
+        "made_in": "United States",
+        "steering_type": "R&P",
+        "antibrake_sys": "4-Wheel ABS",
+        "tank_size": "15.1 gallon",
+        "overall_height": "66.30 inches",
+        "overall_length": "178.10 inches",
+        "overall_width": "72.40 inches",
+        "std_seating": "5",
+        "highway_miles": "33 miles/gallon",
+        "city_miles": "23 miles/gallon",
+        "trim_r": "SE"
+      }
+    },
+    {
+      "build": {
+        "year": 2018,
+        "make": "Honda",
+        "model": "Pilot",
+        "trim": "EX-L",
+        "body_type": "SUV",
+        "vehicle_type": "SUV",
+        "transmission": "Automatic",
+        "drivetrain": "AWD",
+        "fuel_type": "Regular Unleaded",
+        "engine_size": 3.5,
+        "doors": 4,
+        "cylinders": 6,
+        "tank_size": "19.5 gallon",
+        "highway_miles": "26 miles/gallon",
+        "city_miles": "18 miles/gallon",
+        "trim_r": "EX-L"
+      }
+    },
+    {
+      "build": {
+        "year": 2019,
+        "make": "Honda",
+        "model": "Pilot",
+        "trim": "EX-L",
+        "body_type": "SUV",
+        "vehicle_type": "SUV",
+        "transmission": "Automatic",
+        "drivetrain": "4WD",
+        "fuel_type": "Gasoline",
+        "engine": "J35Y6",
+        "engine_size": 3.5,
+        "doors": 5,
+        "cylinders": 6,
+        "made_in": "United States ",
+        "std_seating": "8",
+        "trim_r": "EX-L"
+      }
+    }
+  ]
+}

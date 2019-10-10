@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using InterviewHackerrank.Interviews.Car_Refactor;
 
 namespace InterviewHackerrank
 {
@@ -9,24 +10,39 @@ namespace InterviewHackerrank
         static void Main(String[] args)
         {
 
-            var allCars = new List<Car>()
+            var cars = new Rich_TestCarModels.Cars("SmallListofCars");
+
+            var response = cars.GetCars();
+
+            foreach (var VARIABLE in response)
             {
-                new Car() {Name = "A", Color = "red"},
-                new Car() {Name = "B", Color = "blue"},
-                new Car() {Name = "C", Color = "red"},
-                new Car() {Name = "D", Color = "yellow"},
-                new Car() {Name = "E", Color = "green"},
-                new Car() {Name = "F", Color = "black"}
-            };
+                Console.WriteLine(VARIABLE.Key);
+                foreach (var car in VARIABLE.Value)
+                {
+                    Console.WriteLine("   " + car);
+                }
 
-
-            var redcars = allCars.Where(x => x.Color.Equals("red")).ToList();
-
-            foreach (var carsRedcar in redcars)
-            {
-                Console.WriteLine(carsRedcar.Name);
             }
-            Console.WriteLine(allCars.Count());
+
+            //var allCars = new List<Car>()
+            //{
+            //    new Car() {Name = "A", Color = "red"},
+            //    new Car() {Name = "B", Color = "blue"},
+            //    new Car() {Name = "C", Color = "red"},
+            //    new Car() {Name = "D", Color = "yellow"},
+            //    new Car() {Name = "E", Color = "green"},
+            //    new Car() {Name = "F", Color = "black"}
+            //};
+
+
+            //var redcars = allCars.Where(x => x.Color.Equals("red")).ToList();
+
+            //foreach (var carsRedcar in redcars)
+            //{
+            //    Console.WriteLine(carsRedcar.Name);
+            //}
+            //Console.WriteLine(allCars.Count());
+            Console.WriteLine("Press Enter to Close Program");
 
             string s = Console.ReadLine();
 
@@ -46,17 +62,14 @@ namespace InterviewHackerrank
             //fileOut.Close();
         }
 
-        static string[] getMovieTitles(string substr)
-        {
-            return null;
-        }
 
 
-        public class Car
-        {
-            public string Name { get; set; }
-            public string Color { get; set; }
-        }
+
+        //public class Car
+        //{
+        //    public string Name { get; set; }
+        //    public string Color { get; set; }
+        //}
 
     }
 }
