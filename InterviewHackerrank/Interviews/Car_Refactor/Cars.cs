@@ -32,7 +32,7 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
                 
             }
             //Assert
-            Assert.That(response.Count == 50, response.Count().ToString);
+            Assert.That(response.Count == 14, response.Count().ToString);
 
 
         }
