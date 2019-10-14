@@ -10,7 +10,7 @@ namespace InterviewHackerrank
         static void Main(String[] args)
         {
 
-            var cars = new Rich_TestCarModels.Cars("SmallListofCars");
+            var cars = new Cars("SmallListofCars");
 
             var response = cars.GetCars();
 

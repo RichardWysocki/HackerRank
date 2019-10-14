@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Interviews\Car_Refactor\CarDataModel.cs" />
     <Compile Include="Interviews\Car_Refactor\Cars.cs" />
+    <Compile Include="Interviews\Car_Refactor\Test_Cars.cs" />
     <Compile Include="palindrome.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

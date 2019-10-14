@@ -1,115 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using Newtonsoft.Json;
-using NUnit.Framework;
 
 namespace InterviewHackerrank.Interviews.Car_Refactor
 {
-
-    class Rich_TestCarModels
+    public class Cars
     {
+        private readonly string _fileName;
 
-        [Test]
-        public void TestCars()
+        public Cars(string fileName)
         {
-            //Arrange
-            var cars = new Cars("Cars");
-
-            //Act
-            var response = cars.GetCars();
-
-            foreach (var VARIABLE in response.Values)
-            {
-                Console.WriteLine(VARIABLE);
-                foreach (var car in VARIABLE)
-                {
-                    Console.WriteLine("   "+ car);
-                }
-                
-            }
-            //Assert
-            Assert.That(response.Count == 14, response.Count().ToString);
-
-
+            _fileName = fileName;
+            LoadJson();
         }
 
-        public class Cars
+        public RootObject LoadJson()
         {
-            private readonly string _fileName;
+            Console.WriteLine(Directory.GetCurrentDirectory());
 
-            public Cars(string fileName)
+            var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            using (var r = new StreamReader(dir + @"\Interviews\Car_Refactor\" + _fileName + ".json"))
             {
-                _fileName = fileName;
-                LoadJson();
+                var json = r.ReadToEnd();
+                return JsonConvert.DeserializeObject<RootObject>(json);
             }
-
-            public RootObject LoadJson()
-            {
-                Console.WriteLine(Directory.GetCurrentDirectory());
-
-                var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamReader r = new StreamReader(dir + @"\Interviews\Car_Refactor\"+ _fileName + ".json"))
-                {
-                    string json = r.ReadToEnd();
-                    return JsonConvert.DeserializeObject<RootObject>(json);
-                }
-            }
-
-            //public string[] GetCars(string searchTitle)
-            public Dictionary<string, List<string>> GetCars()
-            {
-                var titles = new List<string>();
-                var httpData = new HttpClient();
-                var knt = 1;
-                var cars = LoadJson().listings;
-
-                var uniqueCarList = new List<string>();
-                foreach (var VARIABLE in cars)
-                {
-                    if (!uniqueCarList.Contains(VARIABLE.build.model))
-                    {
-                        uniqueCarList.Add(VARIABLE.build.model);
-                    }
-                }
-                var collection = new Dictionary<string, List<string>>();
-                foreach (var VARIABLE in uniqueCarList)
-                {
-                    if (collection.ContainsKey(VARIABLE.Substring(0, 1)))
-                    {
-                        var value = collection[VARIABLE.Substring(0, 1)];
-                        value.Add(VARIABLE);
-                        collection[VARIABLE.Substring(0, 1)] = value;
-                    }
-                    else
-                    {
-                        collection.Add(VARIABLE.Substring(0, 1), new List<string>(){VARIABLE});
-                    }
-                }
-
-                //var collectionList = collection.OrderBy(x => x.Key).ToList();
-                // return titlesSorted.ToArray();
-                return collection; 
-                //return uniqueCarList .ToArray();
-                //var kntpages = jsonTask.total_pages;
-                //while (knt < kntpages)
-                //{
-                //    knt++;
-                //    MovieData(seachTitle, httpData, titles, knt);
-                //}
-                //return cars.Select(x => x.build.model).OrderBy(x => x).ToArray();
-
-            }
-
-
-
         }
 
-        
+        public Dictionary<string, List<string>> GetCars()
+        {
+            var cars = LoadJson().listings;
 
+            var uniqueCarList = new List<string>();
+            foreach (var car in cars)
+                if (!uniqueCarList.Contains(car.build.model))
+                    uniqueCarList.Add(car.build.model);
+            var collection = new Dictionary<string, List<string>>();
+            foreach (var uniqueCar in uniqueCarList)
+                if (collection.ContainsKey(uniqueCar.Substring(0, 1)))
+                {
+                    var value = collection[uniqueCar.Substring(0, 1)];
+                    value.Add(uniqueCar);
+                    collection[uniqueCar.Substring(0, 1)] = value;
+                }
+                else
+                {
+                    collection.Add(uniqueCar.Substring(0, 1), new List<string> { uniqueCar });
+                }
 
+            return collection;
+        }
     }
 }
