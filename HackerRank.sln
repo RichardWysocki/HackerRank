@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatterns", "DesignPat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp_PhillydotNet", "BlazorApp_PhillydotNet\BlazorApp_PhillydotNet.csproj", "{2C35F71C-E076-4CDA-88A8-D40931C2FA82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazerApp_PhillydotNet_Test", "BlazerApp_PhillydotNet_Test\BlazerApp_PhillydotNet_Test.csproj", "{EBA76E9E-B8D5-43A8-93CA-BC5B73D18616}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp_PhillydotNet_Test", "BlazerApp_PhillydotNet_Test\BlazorApp_PhillydotNet_Test.csproj", "{EBA76E9E-B8D5-43A8-93CA-BC5B73D18616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
