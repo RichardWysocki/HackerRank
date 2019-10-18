@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace InterviewHackerrank.Interviews.Car_Refactor
@@ -19,10 +16,34 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
             //Act
             var response = cars.GetCars();
 
-            foreach (var VARIABLE in response.Values)
+            foreach (var Cargroup in response)
             {
-                Console.WriteLine(VARIABLE);
-                foreach (var car in VARIABLE)
+                Console.WriteLine(Cargroup.Key);
+                foreach (var car in Cargroup.Value)
+                {
+                    Console.WriteLine("   " + car);
+                }
+            }
+            //Assert
+            Assert.That(response.Count == 5, response.Count().ToString);
+
+
+        }
+
+        [Test]
+        public void TestAllCars()
+        {
+            //Arrange
+            var carDataAccess = new CarDataAccess("Cars");
+            var cars = new Cars(carDataAccess);
+
+            //Act
+            var response = cars.GetCars();
+
+            foreach (var Cargroup in response)
+            {
+                Console.WriteLine(Cargroup.Key);
+                foreach (var car in Cargroup.Value)
                 {
                     Console.WriteLine("   " + car);
                 }
