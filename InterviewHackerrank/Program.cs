@@ -10,7 +10,8 @@ namespace InterviewHackerrank
         static void Main(String[] args)
         {
 
-            var cars = new Cars("SmallListofCars");
+            var carDataAccess = new CarDataAccess("SmallListofCars");
+            var cars = new Cars(carDataAccess);
 
             var response = cars.GetCars();
 

@@ -94,7 +94,13 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
         public int? msrp { get; set; }
     }
 
-    public class RootObject
+    public interface IRootObject
+    {
+        int num_found { get; set; }
+        List<Listing> listings { get; set; }
+    }
+
+    public class RootObject : IRootObject
     {
         public int num_found { get; set; }
         public List<Listing> listings { get; set; }

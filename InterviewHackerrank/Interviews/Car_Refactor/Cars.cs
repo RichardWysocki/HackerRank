@@ -8,35 +8,24 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
 {
     public class Cars
     {
-        private readonly string _fileName;
+        private readonly ICarDataAccess _carDataAccess;
 
-        public Cars(string fileName)
+        public Cars(ICarDataAccess carDataAccess)
         {
-            _fileName = fileName;
-            LoadJson();
+            _carDataAccess = carDataAccess;
         }
 
-        public RootObject LoadJson()
-        {
-            Console.WriteLine(Directory.GetCurrentDirectory());
-
-            var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            using (var r = new StreamReader(dir + @"\Interviews\Car_Refactor\" + _fileName + ".json"))
-            {
-                var json = r.ReadToEnd();
-                return JsonConvert.DeserializeObject<RootObject>(json);
-            }
-        }
 
         public Dictionary<string, List<string>> GetCars()
         {
-            var cars = LoadJson().listings;
+            var cars = _carDataAccess.LoadJson().listings;
+            var collection = new Dictionary<string, List<string>>();
 
             var uniqueCarList = new List<string>();
             foreach (var car in cars)
                 if (!uniqueCarList.Contains(car.build.model))
                     uniqueCarList.Add(car.build.model);
-            var collection = new Dictionary<string, List<string>>();
+            
             foreach (var uniqueCar in uniqueCarList)
                 if (collection.ContainsKey(uniqueCar.Substring(0, 1)))
                 {

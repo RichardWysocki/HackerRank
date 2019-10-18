@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interviews\Car_Refactor\CarDataAccess.cs" />
     <Compile Include="Interviews\Car_Refactor\CarDataModel.cs" />
     <Compile Include="Interviews\Car_Refactor\Cars.cs" />
     <Compile Include="Interviews\Car_Refactor\Test_Cars.cs" />

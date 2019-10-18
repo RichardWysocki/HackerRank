@@ -13,7 +13,8 @@ namespace InterviewHackerrank.Interviews.Car_Refactor
         public void TestCars()
         {
             //Arrange
-            var cars = new Cars("Cars");
+            var carDataAccess = new CarDataAccess("SmallListofCars");
+            var cars = new Cars(carDataAccess);
 
             //Act
             var response = cars.GetCars();
