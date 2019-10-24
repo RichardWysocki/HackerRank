@@ -7,6 +7,20 @@ namespace InterviewHackerrank
     {
         static void Main(String[] args)
         {
+            //In this Problem, we have a Cars class which gets a list of Cars from different JSON files.
+            //    Write the "GetCars" method to return a dictionary with the key being the First Letter of the model of the car and the value being the list of cars in the JSON file with that result.
+            //    See Example Answer
+            //    A
+            //Altima
+            //    Audi
+            //E
+            //    Escape
+            //F
+            //F-250 Super Duty
+            //P
+            //    Pilot
+            //T
+            //    Tracker
 
             var carDataAccess = new CarDataAccess("SmallListofCars");
             var cars = new Cars(carDataAccess);
