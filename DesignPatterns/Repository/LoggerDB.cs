@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesignPatterns.Repository
 {
-    class LoggerDB:  IRepository<Log>
+    public class LoggerDB:  IRepository<Log>
     {
         private readonly List<Log> _list = new List<Log>();
 

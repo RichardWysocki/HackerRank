@@ -17,18 +17,19 @@ namespace DesignPatterns.Repository
         }
 
         public List<Log> getAllLogs()
-        {
-            var data = _repositoryFile.GetAll();
+        { 
+            var data = new List<Log>();
+            data.AddRange(_repositoryFile.GetAll());
             data.AddRange(_repositoryDb.GetAll());
             return data;
         }
 
-        public void AllFileLog(Log recordLog)
+        public void  AddFileLog(Log recordLog)
         {
             _repositoryFile.Add(recordLog);
         }
 
-        public void AllDBLog(Log recordLog)
+        public void AddDBLog(Log recordLog)
         {
             _repositoryDb.Add(recordLog);
         }

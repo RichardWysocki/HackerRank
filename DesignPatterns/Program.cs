@@ -86,12 +86,13 @@ namespace DesignPatterns
             {
                 Console.WriteLine($"Log record: {item.Source}");
             }
-            var record = new Log {Error = "Error Source", Source = "Adding a Source"};
-            Console.WriteLine("Adding Records---------------------------------------------------------------------------------------");
             
-            businessRespository.AllDBLog(record);
-            businessRespository.AllFileLog(record);
-            businessRespository.AllFileLog(record);
+            Console.WriteLine("Adding Records---------------------------------------------------------------------------------------");
+
+            var record = new Log { Error = "Error Source", Source = "Adding a Source" };
+            businessRespository.AddDBLog(record);
+            businessRespository.AddFileLog(record);
+            businessRespository.AddFileLog(record);
             Console.WriteLine("Listing all Data--------------------------------------------------------------------------------------");
             foreach (var item in businessRespository.getAllLogs())
             {
