@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DesignPatterns.ChainOfResponsibility;
 using DesignPatterns.Factory;
+using DesignPatterns.Repository;
 using DesignPatterns.SingletonExample;
 
 namespace DesignPatterns
@@ -73,9 +74,32 @@ namespace DesignPatterns
                 Console.WriteLine("CheckBalance: " + transactionFactory.CheckBalance("12345"));
                 Console.WriteLine("--------------------------------------------------------------------------------------------------");
             }
+
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------");
+            Console.WriteLine("REPOSITORY PATTERN-----------------------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------");
             
+
+            var businessRespository = new BusinessRepository(new LoggerFile(), new LoggerDB());
+
+            foreach (var item in businessRespository.getAllLogs())
+            {
+                Console.WriteLine($"Log record: {item.Source}");
+            }
+            var record = new Log {Error = "Error Source", Source = "Adding a Source"};
+            Console.WriteLine("Adding Records---------------------------------------------------------------------------------------");
             
-            
+            businessRespository.AllDBLog(record);
+            businessRespository.AllFileLog(record);
+            businessRespository.AllFileLog(record);
+            Console.WriteLine("Listing all Data--------------------------------------------------------------------------------------");
+            foreach (var item in businessRespository.getAllLogs())
+            {
+                Console.WriteLine($"Log record: {item.Source}");
+            }
+
+
+
             Console.WriteLine("--------------------------------------------------------------------------------------------------");
 
             Console.WriteLine("End Program");

@@ -10,5 +10,7 @@ namespace DesignPatterns.Factory
             var result = Assembly.GetExecutingAssembly().CreateInstance(type) as ITransactions;
             return result;
         }
+
+
     }
 }
